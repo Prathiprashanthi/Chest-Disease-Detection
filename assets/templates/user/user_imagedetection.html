@@ -1,0 +1,343 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Chest Disease Classification</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'user/css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'user/css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+        .frame {
+            position: absolute;
+            top: 50%;
+            right: 30%;
+            width: 500px;
+            height: 580px;
+            margin-top: -200px;
+            margin-right: -200px;
+            border-radius: 2px;
+            box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: linear-gradient(to top right, #80d0c7 ,#80d0c7);
+            color: #80d0c7;
+            font-family: "Open Sans", Helvetica, sans-serif;
+        }
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 500px;
+            border-radius: 3px;
+            box-shadow: 8px 10px 15px 0 rgba(0, 0, 0, 0.2);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+        
+        .title {
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid #999;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 16px;
+            font-weight: 300;
+            color: #666;
+        }
+        
+        .dropzone {
+            width: 100px;
+            height: 80px;
+            border: 1px dashed #999;
+            border-radius: 3px;
+            text-align: center;
+        }
+        
+        .upload-icon {
+            margin: 25px 2px 2px 2px;
+        }
+        
+        .upload-input {
+            position: relative;
+            top: -62px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: block;
+            width: 140px;
+            height: 40px;
+            background: darkmagenta;
+            color: #fff;
+            border-radius: 3px;
+            border: 0;
+            box-shadow: 0 3px 0 0 hotpink;
+            transition: all 0.3s ease-in-out;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: rebeccapurple;
+            box-shadow: 0 3px 0 0 deeppink;
+        }
+        .site-footer {
+            color: white; /* Set the text color to white */
+            background-color:  #13547a; /* Set a background color for the footer */
+            padding: 20px 0; /* Add padding to the footer content */
+        }
+        
+          /* Style links in the footer if needed */
+        .site-footer a {
+            color: white; /* Set link text color to white */
+            text-decoration: none; /* Remove underline from links */
+        }
+        .site-footer-title{
+            color:white;
+        }
+        .copyright-text{
+            color:white;
+        }
+        
+        </style>
+
+</head>
+<br><br><br>
+
+<body class="topics-listing-page" id="top"
+    style="background-image: url('{% static 'user/images/fig1.jpg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; font-family: Arial, sans-serif;">
+
+    <main style="padding-top:200px;">
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'user_dashboard' %}">
+                    <span style="color: white;">Chest Disease</span>
+                </a>
+
+                <div class="d-lg-none ms-auto me-4">
+                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" style="color: white;"
+                                href="{% url 'user_dashboard' %}">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{% url 'user_detected' %}">Chest Detection</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{% url 'user_profile' %}">Profile</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{% url 'user_feedback' %}">Feedback</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="{% url 'userlogout' %}">Logout</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section style="padding-top:100px; padding-bottom:100px;">
+            <form class="m-4" id="imageForm" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="frame" style="border-radius: 5%; width:1000px;">
+                            <div class="center"style="border-radius: 10%">
+                                <div class="title">
+                                    <h1>Drop file to upload</h1>
+                                </div>
+            
+                                <div class="dropzone">
+                                    <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
+                                    <input type="file" id="imageInput" name="img" class="upload-input" accept="image/*" />
+                                    
+                                   
+                                </div>
+                                <div id="imagePreviewContainer">
+                                    <img id="imagePreview" /style="border-radius: 10%; width: 360px; height:270px;">
+                                   
+                                </div>
+                                <button type="submit" class="btn">Submit</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </section>
+            
+            <script>
+                // Get the input element and the image preview container
+                const imageInput = document.getElementById('imageInput');
+                const imagePreview = document.getElementById('imagePreview');
+                const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+            
+                // Add an event listener to the input element to update the image preview
+                imageInput.addEventListener('change', function () {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            imagePreview.src = e.target.result;
+                            imagePreviewContainer.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        imagePreview.src = '';
+                        imagePreviewContainer.style.display = 'none';
+                    }
+                });
+            </script>
+            
+        </section>
+
+    </main>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-12 mb-4 pb-2">
+                    <a class="navbar-brand mb-2" href="index.html">
+                        <span>Codebook.in</span>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <h6 class="site-footer-title mb-3">Resources</h6>
+
+                    <ul class="site-footer-links">
+
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">How it works</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Information</h6>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: 305-240-9671" class="site-footer-link">
+                            +91 8555887986
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:info@company.com" class="site-footer-link">
+                            info@codebook.in
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+
+
+                    <p class="copyright-text mt-lg-5 mt-4">Copyright © 2023 Center. All rights reserved codebook.
+                        <br><br>Design: <a rel="nofollow" target="_blank">codebook.in</a>
+
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="{% static 'user/js/jquery.min.js' %}"></script>
+    <script src="{% static 'user/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'user/js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'user/js/click-scroll.js' %}"></script>
+    <script src="{% static 'user/js/custom.js' %}"></script>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <script>swal({
+            title: "Success!",
+            text: "{{message}}",
+            icon: "success",
+            button: "OK",
+        });
+    </script>
+
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <script>swal({
+            title: "Warning :)",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+            title: "info :)",
+            text: "{{message}}",
+            icon: "info",
+            button: "OK",
+        });
+    </script>
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script>swal({
+            title: "error :)",
+            text: "{{message}}",
+            icon: "error",
+            button: "OK",
+        });
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+
+</body>
+
+</html>

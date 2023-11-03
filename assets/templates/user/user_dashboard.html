@@ -1,0 +1,268 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Chest Disease Classification</title>
+
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+                        
+        <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'user/css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'user/css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+        .site-footer {
+            color: white; /* Set the text color to white */
+            background-color:  #13547a; /* Set a background color for the footer */
+            padding: 20px 0; /* Add padding to the footer content */
+        }
+        
+          /* Style links in the footer if needed */
+        .site-footer a {
+            color: white; /* Set link text color to white */
+            text-decoration: none; /* Remove underline from links */
+        }
+        .site-footer-title{
+            color:white;
+        }
+        .copyright-text{
+            color:white;
+        }
+        
+    </style>
+
+    <style>
+     
+        .quote-box {
+            
+            overflow: hidden;
+            background-color: #4ADFCC;
+            color: white;
+            height:150px;
+            width:300px;
+            box-shadow: 2px 2px 2px 2px #E0E0E0;
+            
+        }
+        .quote-box{
+            margin-bottom: 0; /* Remove vertical space between containers */
+        }
+    </style>
+    </head>
+    <br><br><br>
+    
+    <body class="topics-listing-page" id="top" style="background-image: url('{% static 'user/images/fig1.jpg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; font-family: Arial, sans-serif;">
+
+        <main>
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{% url 'user_dashboard' %}">
+                        <span style="color: white;">Chest Disease</span>
+                    </a>
+
+                    <div class="d-lg-none ms-auto me-4">
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll"style="color: white;" href="{% url 'user_dashboard' %}">Dashboard</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{% url 'user_detected' %}">Chest Detection</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{% url 'user_profile' %}">Profile</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{% url 'user_feedback' %}">Feedback</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{% url 'userlogout' %}">Logout</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="card-img-top" src="{% static 'user/images/senior.jpg' %}" alt="Card image cap" style="height:400px; width:800px;">
+                    </div>
+                    <div class="col-md-6">
+                        <img class="card-img-top" src="{% static 'user/images/pic20.PNG' %}" alt="Card image cap" style="height:400px; width:800px;">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" style=" padding-bottom:100px;">
+                <div class="col-md-4">
+                    <div class="container">
+                        <blockquote class="quote-box" style="height:200px;">
+                          
+                                <h4 class="card-title text-primary">No.of times Login<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-in-right ml-2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                                </svg></h4>
+                                <p class="card-text text-dark mt-4" style='color:white !important; font-size:20px;' >{{la.No_Of_Times_Login}}</p>
+                          
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Duplicate this column for the second column -->
+                    <div class="container">
+                        <blockquote class="quote-box"style="height:200px;">
+                            
+                            
+                                <h4 class="card-title text-primary">Last Login Date <i class="fa fa-calendar" aria-hidden="true"></i></h4>
+                                <p class="card-text text-dark mt-4" style='color:white !important; font-size:20px;'>{{la.Last_Login_Date}}</p>
+                          
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Duplicate this column for the third column -->
+                    <div class="container">
+                        <blockquote class="quote-box"style="height:200px;">
+                            
+                                <h4 class="card-title text-primary">Last Login Time&#x23F1;</h4>
+                                <p class="card-text text-dark mt-4" style='color:white !important; font-size:20px;'>{{la.Last_Login_Time}}</p>
+                               
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+        </main>
+        
+        <footer class="site-footer section-padding" >
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-12 mb-4 pb-2">
+                        <a class="navbar-brand mb-2" href="index.html">
+                            <span>Codebook.in</span>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <h6 class="site-footer-title mb-3">Resources</h6>
+
+                        <ul class="site-footer-links">
+                           
+    
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">How it works</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                        <h6 class="site-footer-title mb-3">Information</h6>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: 305-240-9671" class="site-footer-link">
+                                +91 8555887986
+                            </a>
+                        </p>
+    
+                        <p class="text-white d-flex">
+                            <a href="mailto:info@company.com" class="site-footer-link">
+                                info@codebook.in
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                       
+
+                        <p class="copyright-text mt-lg-5 mt-4">Copyright © 2023 Center. All rights reserved codebook.
+                            <br><br>Design: <a rel="nofollow"  target="_blank">codebook.in</a>
+                            
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'user/js/jquery.min.js' %}"></script>
+        <script src="{% static 'user/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'user/js/jquery.sticky.js' %}"></script>
+        <script src="{% static 'user/js/click-scroll.js' %}"></script>
+        <script src="{% static 'user/js/custom.js' %}"></script>
+      
+        
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <script>swal({
+                            title: "Success!",
+                            text: "{{message}}",
+                            icon: "success",
+                            button: "OK",
+                        });
+                    </script>
+                
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                    <script>swal({
+                            title: "Warning :)",
+                            text: "{{message}}",
+                            icon: "warning",
+                            button: "OK",
+                        
+                        });
+                    </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                    <script>swal({
+                            title: "info :)",
+                            text: "{{message}}",
+                            icon: "info",
+                            button: "OK",
+                        });
+                    </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <script>swal({
+                            title: "error :)",
+                            text: "{{message}}",
+                            icon: "error",
+                            button: "OK",
+                        });
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    
+
+    </body>
+</html>

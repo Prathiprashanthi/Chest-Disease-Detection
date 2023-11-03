@@ -1,0 +1,329 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Chest Disease Classification</title>
+
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+                        
+        <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'user/css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'user/css/templatemo-topic-listing.css' %}" rel="stylesheet">
+
+    <style>
+        .site-footer {
+            color: white; /* Set the text color to white */
+            background-color:  #13547a; /* Set a background color for the footer */
+            padding: 20px 0; /* Add padding to the footer content */
+        }
+        
+          /* Style links in the footer if needed */
+        .site-footer a {
+            color: white; /* Set link text color to white */
+            text-decoration: none; /* Remove underline from links */
+        }
+        .site-footer-title{
+            color:white;
+        }
+        .copyright-text{
+            color:white;
+        }
+        
+    </style>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <style>
+          body {
+               background-image: url('{% static 'user/images/pic10.jpg' %}');
+               background-size: cover;
+               background-repeat: no-repeat;
+               background-attachment: fixed;
+          }
+     </style>
+     <style>
+          
+          .rating {
+               display: flex;
+               flex-direction: row-reverse;
+               justify-content: center;
+          }
+
+          .rating>input {
+               display: none;
+          }
+
+          .rating>label {
+               position: relative;
+               width: 1em;
+               font-size: 40px;
+               color: #FFD600;
+               cursor: pointer;
+          }
+
+          .rating>label::before {
+               content: "\2605";
+               position: absolute;
+               opacity: 0;
+          }
+
+          .rating>label:hover:before,
+          .rating>label:hover~label:before {
+               opacity: 1 !important;
+          }
+
+          .rating>input:checked~label:before {
+               opacity: 1;
+          }
+
+          .rating:hover>input:checked~label:before {
+               opacity: 0.4;
+          }
+
+          /* body{ background: #222225; color: rgb(180, 43, 43);}
+      h1, p{ 
+          text-align: center;
+          
+      } */
+
+          h1 {
+               margin-top: 150px;
+          }
+
+          p {
+               font-size: 1.2rem;
+          }
+
+          @media only screen and (max-width: 1200px) {
+               h1 {
+                    font-size: 14px;
+               }
+
+               p {
+                    font-size: 12px;
+               }
+          }
+          .custom {
+            background-color: #098090;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .iframe {
+            position: absolute;
+            top: 50%;
+            left:20%;
+            width: 1000px;
+            height: 500px;
+            margin-top: -200px;
+            margin-right: -200px;
+            margin-bottom: -200px;
+            border-radius: 2px;
+            box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: linear-gradient(to top left, #80d0c7, #80d0c7);
+            color: #333;
+            font-family: "Open Sans", Helvetica, sans-serif;
+        }
+     </style>
+
+
+    
+    </head>
+  
+    
+    <body class="topics-listing-page" id="top" style="background-image: url('{% static 'user/images/fig1.jpg' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; font-family: Arial, sans-serif;">
+
+        <main>
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{% url 'user_dashboard' %}">
+                        <span style="color: white;">Chest Disease</span>
+                    </a>
+
+                    <div class="d-lg-none ms-auto me-4">
+                        <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    </div>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll"style="color: white;" href="{% url 'user_dashboard' %}">Dashboard</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{% url 'user_detected' %}">Chest Detection</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{% url 'user_profile' %}">Profile</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{% url 'user_feedback' %}">Feedback</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="{% url 'userlogout' %}">Logout</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div  style="padding-top: 200px; padding-bottom:200px;">
+                          <div class="row">
+                          <div class="iframe"style="border-radius: 5%;">
+                               <!-- Added mx-auto class to center the card horizontally -->
+                               <form action="" method="post" class="col-12">
+                                    {% csrf_token %}
+                                    <h1  style="color:#fff;"class="text-center mt-2">Feed Back Form</h1>
+                                    <hr>
+                                    <div class="rating">
+                                         <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                         <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                         <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                         <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                         <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                    </div>
+                                    <div class="form-group"> <!-- Wrap textarea in a form-group -->
+                                         <textarea class="form-control" placeholder="Type your comments..." name="review" id=""
+                                              cols="30" rows="5"></textarea>
+                                    </div>
+                                    <br>
+                                    <div class="form-group text-center"> <!-- Wrap button in a form-group -->
+                                         <button class="section-btn btn btn-default smoothScroll custom "
+                                              type="submit">Submit</button>
+                                    </div>
+                               </form>
+                          </div>
+                          </div>
+                    
+                     
+                </section>
+           </div>
+            
+            
+            
+
+            
+        </main>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <footer class="site-footer section-padding" >
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-12 mb-4 pb-2">
+                        <a class="navbar-brand mb-2" href="index.html">
+                            <span>Codebook.in</span>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <h6 class="site-footer-title mb-3">Resources</h6>
+
+                        <ul class="site-footer-links">
+                           
+    
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">How it works</a>
+                            </li>
+    
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                        <h6 class="site-footer-title mb-3">Information</h6>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="tel: 305-240-9671" class="site-footer-link">
+                                +91 8555887986
+                            </a>
+                        </p>
+    
+                        <p class="text-white d-flex">
+                            <a href="mailto:info@company.com" class="site-footer-link">
+                                info@codebook.in
+                            </a>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                       
+
+                        <p class="copyright-text mt-lg-5 mt-4">Copyright © 2023 Center. All rights reserved codebook.
+                            <br><br>Design: <a rel="nofollow"  target="_blank">codebook.in</a>
+                            
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'user/js/jquery.min.js' %}"></script>
+        <script src="{% static 'user/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'user/js/jquery.sticky.js' %}"></script>
+        <script src="{% static 'user/js/click-scroll.js' %}"></script>
+        <script src="{% static 'user/js/custom.js' %}"></script>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <script>swal({
+                            title: "Success!",
+                            text: "{{message}}",
+                            icon: "success",
+                            button: "OK",
+                        });
+                    </script>
+                
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                    <script>swal({
+                            title: "Warning :)",
+                            text: "{{message}}",
+                            icon: "warning",
+                            button: "OK",
+                        
+                        });
+                    </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                    <script>swal({
+                            title: "info :)",
+                            text: "{{message}}",
+                            icon: "info",
+                            button: "OK",
+                        });
+                    </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <script>swal({
+                            title: "error :)",
+                            text: "{{message}}",
+                            icon: "error",
+                            button: "OK",
+                        });
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    
+
+    </body>
+</html>

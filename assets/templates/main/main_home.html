@@ -1,0 +1,342 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Chest Disease Classification</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <link href="{% static 'user/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'user/css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'user/css/templatemo-topic-listing.css' %}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        .site-footer {
+            color: white; /* Set the text color to white */
+            background-color:  #13547a; /* Set a background color for the footer */
+            padding: 20px 0; /* Add padding to the footer content */
+        }
+        
+          /* Style links in the footer if needed */
+        .site-footer a {
+            color: white; /* Set link text color to white */
+            text-decoration: none; /* Remove underline from links */
+        }
+        .site-footer-title{
+            color:white;
+        }
+        .copyright-text{
+            color:white;
+        }
+    </style>
+  
+
+</head>
+<body style="background-image: url('{% static 'user/images/pic11.PNG' %}'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white; font-family: Arial, sans-serif;">
+    <section class="hero-section " id="section_1" style="padding-top: 10px;">
+        <div class="container" style="padding: 50px;">
+            <div class="row">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">
+                            <span style="color: white;">Chest Disease</span>
+                        </a>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link click-scroll"style="color: white;" href="{% url 'home' %}">Home</a>
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a class="nav-link click-scroll" href="{% url 'user_login' %}">user</a>
+                                </li>
+        
+                                <li class="nav-item">
+                                    <a class="nav-link click-scroll" href="{% url 'admin' %}">admin</a>
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a class="nav-link click-scroll" href="{% url 'about' %}">about</a>
+                                </li>
+        
+                                <li class="nav-item">
+                                    <a class="nav-link click-scroll" href="{% url 'contact' %}">contact</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="featured-section"style="padding:30px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-10 mb-4 mb-lg-0">
+                    <div class="custom-block p-3 bg-white shadow" style="color:#fff;">
+                        <img src="{% static 'user/images/pic2.PNG' %}" class="custom-block-image img-fluid" alt="img" style="height:450px; width:430px;">
+                    </div>
+                </div>
+                
+                
+
+                <div class="col-lg-6 col-12">
+                    <div class="custom-block custom-block-overlay">
+                        <div class="d-flex flex-column h-100">
+                            <img src="{% static 'user/images/pic5.PNG' %}"
+                                class="custom-block-image img-fluid" alt="img"style="height:400px; width:900px;">
+
+                            <div class="custom-block-overlay-text d-flex">
+                                <div>
+                                    <h5 class="text-white mb-2">Chest disease:</h5>
+
+                                    <p style="color: white;">It's important to note that chest pain or discomfort can be a symptom of various medical conditions. If you or someone you know is experiencing
+
+                                    <div>
+                                        <button href="topics-detail.html"  class="btn custom-btn mt-2 mt-lg-3">Learn More</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="section-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+  
+
+    
+
+
+    <section class="faq-section section-padding" id="section_6">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12">
+                    <h2 class="mb-4">Chest</h2>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-lg-5 col-12">
+                    <img src="{% static 'user/images/pic1.jpg' %}" class="img-fluid" alt="FAQs" style=" border-radius: 10%; width:400px; height:300px;">
+                </div>
+
+                <div class="col-lg-6 col-12 m-auto">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Chest Disease Reports ?
+                                </button>
+                            </h2>
+
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body"  style="color: black;">
+                                    is an Open Access, peer-reviewed international medical journal devoted entirely to the study, diagnosis, and treatment of all conditions of chest-related diseases. These include – but are not limited to –  pulmonology, respiratory medicine, cardiology, thoracic surgery and transplantation, critical care, abdomen and chest disease, and sleep medicine. The primary intent of the Journal will be to rapidly publish clinically relevant information that will directly improve the care of patients. Basic science studies and experimental papers of interest to those treating disorders will also be considered for publication..
+                                </div>
+                            </div>
+                        </div>
+                            
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="timeline-section" id="section_9">
+        <div class="section-overlay"></div>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-white mb-4">How does it work?</h2>
+                </div>
+    
+                <div class="col-lg-10 col-12 mx-auto">
+                    <div class="timeline-container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="icon-holder">
+                                    <img src="{% static 'user/images/pic6.PNG' %}" class="img-fluid " alt="FAQs" style=" border-radius:50%;width: 300px; height: 300px;">
+                                </div>
+                                <div class="icon-holder"style="padding-top:50px;">
+                                    <img src="{% static 'user/images/pic7.PNG' %}" class="img-fluid " alt="FAQs" style=" border-radius:50%;width: 300px; height: 300px;">
+                                </div>
+                                <div class="icon-holder"style="padding-top:50px;">
+                                    <img src="{% static 'user/images/pic5.PNG' %}" class="img-fluid " alt="FAQs" style=" border-radius:50%;width: 300px; height: 300px;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
+                                    <li>
+                                        <h4 class="text-white mb-5">Chest pain</h4>
+                                        <p style="color: white;font-size: 14px;">Chest pain appears in many forms, ranging from a sharp stab to a dull ache. Sometimes chest pain feels crushing or burning. In certain cases, the pain travels up the neck and into the jaw and then spreads to the back or down one or both arms.</p>
+                                    </li>
+    
+                                    <li>
+                                        <h4 class="text-white mb-3">Symptoms</h4>
+                                        <p style="color: white;font-size: 14px;">Chest pain can feel different depending on what's triggering the symptom. Often, the cause has nothing to do with the heart — though there's no easy way to tell without seeing a health care provider.</p>
+                                    </li>
+    
+                                    <li>
+                                        <h4 class="text-white mb-3">Heart-related chest pain</h4>
+                                        <p style="color: white;font-size: 14px;">Chest pain is often associated with heart disease. But many people with heart disease say they have a mild discomfort that they would not really call pain. Chest discomfort due to a heart attack or another heart problem may feel like?</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-12 text-center mt-5">
+                    <p class="text-white">
+                    <a href="#" class="btn custom-btn custom-border-btn ms-3">Check out Youtube</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+    
+
+    <footer class="site-footer section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-12 mb-4 pb-2">
+                    <a class="navbar-brand mb-2" href="index.html">
+                        <span>Codebook.in</span>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <h6 class="site-footer-title mb-3">Resources</h6>
+
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item">
+                            <a href="{% url 'home' %}" class="site-footer-link">Home</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="#" class="site-footer-link">How it works</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="{% url 'about' %}" class="site-footer-link">About</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="{% url 'contact' %}" class="site-footer-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                    <h6 class="site-footer-title mb-3">Information</h6>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: 305-240-9671" class="site-footer-link">
+                            +91 8555887986
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:info@company.com" class="site-footer-link">
+                            info@codebook.in
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+
+
+                    <p class="copyright-text mt-lg-5 mt-4">Copyright © 2023 Center. All rights reserved codebook.
+                        <br><br>Design: <a rel="nofollow"  target="_blank">codebook.in</a>
+                        
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="{% static 'user/js/jquery.min.js' %}"></script>
+    <script src="{% static 'user/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'user/js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'user/js/click-scroll.js' %}"></script>
+    <script src="{% static 'user/js/custom.js' %}"></script>
+    {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <script>swal({
+                            title: "Success!",
+                            text: "{{message}}",
+                            icon: "success",
+                            button: "OK",
+                        });
+                    </script>
+                
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                    <script>swal({
+                            title: "Warning :)",
+                            text: "{{message}}",
+                            icon: "warning",
+                            button: "OK",
+                        
+                        });
+                    </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                    <script>swal({
+                            title: "info :)",
+                            text: "{{message}}",
+                            icon: "info",
+                            button: "OK",
+                        });
+                    </script>
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <script>swal({
+                            title: "error :)",
+                            text: "{{message}}",
+                            icon: "error",
+                            button: "OK",
+                        });
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+</body>
+
+</html>
